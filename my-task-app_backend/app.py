@@ -1,10 +1,12 @@
+# app.py
 from flask import Flask
+from . import create_app, db
 
-app = Flask(__name__)
+app = create_app()
 
-@app.route('/')
-def home():
-    return "Hello, World!"
+# Create the database and tables
+with app.app_context():
+    db.create_all()
 
 if __name__ == '__main__':
     app.run(debug=True)
