@@ -6,6 +6,17 @@ from . import db  # Import db to use the SQLAlchemy instance
 
 main = Blueprint('main', __name__)
 
+
+@main.route('/', methods=[ 'GET'])
+def home():
+    return render_template('home.html')
+
+
+
+
+
+
+
 @main.route('/register', methods=['POST', 'GET'])
 def register():
     error_messages = []
@@ -22,7 +33,7 @@ def register():
         date_of_birth = request.form.get('dateOfBirth')
 
         # Simple validation
-        if not all([first_name, last_name, phone, email, password, gender, date_of_birth]):
+        if not all([first_name, last_name, phone, email, password, gender]):
             error_messages.append("All fields are required.")
             return render_template("register.html", error_messages=error_messages, success_messages=success_messages)
 
@@ -42,7 +53,7 @@ def register():
                 email=email,
                 password=hashed_password,
                 gender=gender,
-                date_of_birth=date_of_birth
+       
             )
             db.session.add(new_user)
             db.session.commit()
@@ -50,7 +61,7 @@ def register():
             return render_template("register.html", error_messages=error_messages, success_messages=success_messages)
         except Exception as e:
             print(f"Exception while trying to register user: {e}")
-            error_messages.append("Could not register user.")
+            error_messages.append(f"Could not register user. {e}")
             return render_template("register.html", error_messages=error_messages, success_messages=success_messages)
 
     elif request.method == "GET":

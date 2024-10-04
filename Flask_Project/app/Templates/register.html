@@ -3,6 +3,28 @@
 content %}
 <h2>Register</h2>
 
+<!-- Display error messages -->
+{% if error_messages %}
+<div class="alert alert-danger" role="alert">
+  <ul>
+    {% for error in error_messages %}
+    <li>{{ error }}</li>
+    {% endfor %}
+  </ul>
+</div>
+{% endif %}
+
+<!-- Display success messages -->
+{% if success_messages %}
+<div class="alert alert-success" role="alert">
+  <ul>
+    {% for success in success_messages %}
+    <li>{{ success }}</li>
+    {% endfor %}
+  </ul>
+</div>
+{% endif %}
+
 <form method="POST">
   <div class="form-group">
     <label for="firstName">First Name</label>
@@ -50,16 +72,7 @@ content %}
       <option value="female">Female</option>
     </select>
   </div>
-  <div class="form-group">
-    <label for="dateOfBirth">Date of Birth</label>
-    <input
-      type="date"
-      class="form-control"
-      id="dateOfBirth"
-      name="dateOfBirth"
-      required
-    />
-  </div>
+
   <button type="submit" class="btn btn-primary">Register</button>
 </form>
 {% endblock %}
