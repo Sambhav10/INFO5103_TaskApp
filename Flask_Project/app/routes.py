@@ -33,7 +33,8 @@ def register():
         date_of_birth = request.form.get('dateOfBirth')
 
         # Simple validation
-        if not all([first_name, last_name, phone, email, password, gender]):
+        if not all([first_name, last_name, phone, email, password, gender
+                    ]):
             error_messages.append("All fields are required.")
             return render_template("register.html", error_messages=error_messages, success_messages=success_messages)
 
