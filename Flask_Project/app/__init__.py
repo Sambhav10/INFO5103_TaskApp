@@ -14,7 +14,13 @@ def create_app():
     db.init_app(app)
 
     # Import and register blueprints here to avoid circular import
-    from .routes import main as main_blueprint
+    from .main_route import main as main_blueprint
+    from .register_route import register_blueprint
+
+   # main is the home page 
     app.register_blueprint(main_blueprint)
+    # register is the registration page 
+    app.register_blueprint(register_blueprint)
+
 
     return app
