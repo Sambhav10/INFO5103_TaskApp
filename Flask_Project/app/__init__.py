@@ -17,6 +17,8 @@ def create_app():
     from .main_route import main as main_blueprint
     from .register_route import register_blueprint
     from .login_route import login_blueprint
+    from .new_task import task_blueprint  # Import the task blueprint
+
 
    # main is the home page 
     app.register_blueprint(main_blueprint)
@@ -24,6 +26,9 @@ def create_app():
     app.register_blueprint(register_blueprint)
     #login page
     app.register_blueprint(login_blueprint)
+
+    #newtask page
+    app.register_blueprint(task_blueprint)
 
 
     return app
