@@ -1,0 +1,44 @@
+# Python bytecode files
+__pycache__/
+*.py[cod]
+
+# Flask specific
+instance/
+*.log
+*.sqlite3
+
+# Virtual environment
+env/
+venv/
+.env
+
+# IDEs and editors
+.vscode/
+.idea/
+*.sublime-project
+*.sublime-workspace
+*.egg-info/
+.Python
+
+# Jupyter Notebook
+.ipynb_checkpoints
+
+# Coverage reports
+htmlcov/
+.coverage
+coverage.xml
+
+# Pytest
+.cache
+nosetests.xml
+*.cover
+
+# Miscellaneous
+*.DS_Store
+*.tgz
+*.egg
+*.zip
+*.tar.gz
+
+# Local configurations
+*.local
