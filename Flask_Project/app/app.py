@@ -1,5 +1,8 @@
 # app/app.py
+from flask_login import LoginManager
 from app import create_app, db
+
+
 
 app = create_app()
 
