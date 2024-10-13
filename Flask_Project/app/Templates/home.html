@@ -1,5 +1,25 @@
 <!-- app/templates/register.html -->
-{% extends 'base.html' %} {% block title %}Home{% endblock %} {% block content
-%}
+{% extends 'base.html' %} {% block title %}Home{% endblock %}
+<!-- Display error messages -->
+{% if error_messages %}
+<div class="alert alert-danger" role="alert">
+  <ul>
+    {% for error in error_messages %}
+    <li>{{ error }}</li>
+    {% endfor %}
+  </ul>
+</div>
+{% endif %}
+
+<!-- Display success messages -->
+{% if success_messages %}
+<div class="alert alert-success" role="alert">
+  <ul>
+    {% for success in success_messages %}
+    <li>{{ success }}</li>
+    {% endfor %}
+  </ul>
+</div>
+{% endif %} {% block content%}
 <h2>This is the home page</h2>
 {% endblock %}

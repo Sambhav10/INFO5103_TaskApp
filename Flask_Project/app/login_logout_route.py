@@ -1,5 +1,5 @@
 # app/login_routes.py
-from flask import Blueprint,session, render_template, request
+from flask import Blueprint, redirect,session, render_template, request, url_for
 from flask_login import login_required, login_user, logout_user
 from werkzeug.security import check_password_hash
 from .models import User  # Ensure correct import
@@ -29,11 +29,10 @@ def login():
 
             # Login user
             login_user(user) # This logs the user in and stores their ID in the session
-
-            success_messages.append("Login successful!")
            
             # Redirect to home page
-            return render_template("home.html", error_messages=error_messages, success_messages=success_messages)
+            session['success_messages'] = ['Login successful!']  # Store success message in session
+            return redirect(url_for('main.home'))  # Redirect to home after login
       
         else:
             error_messages.append("Invalid email or password.")
@@ -46,6 +45,4 @@ def login():
 @login_required
 def logout():
     logout_user()
-    success_messages = ["Logged out sucessfully !"]
-    error_messages = []
-    return render_template("login.html",error_messages=error_messages, success_messages=success_messages)
+    return render_template("logout.html")

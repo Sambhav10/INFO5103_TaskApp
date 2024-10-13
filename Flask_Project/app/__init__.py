@@ -11,7 +11,7 @@ def create_app():
     # To manage login/logout
     login_manager = LoginManager()
     login_manager.init_app(app)
-    login_manager.login_view = 'login'  # Flask-Login will redirect to this view if not logged in
+    login_manager.login_view = 'login_logout.login'  # Flask-Login will redirect to this view if not logged in
 
     # Load configuration
     app.config.from_object('app.config.Config')  # Use the correct path to Config
