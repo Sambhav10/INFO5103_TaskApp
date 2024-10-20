@@ -40,7 +40,7 @@ def new_task():
             )
             db.session.add(task)
             db.session.commit()
-            return redirect(url_for('main.home'))
+            return redirect(url_for('tasks.view_tasks'))
 
     # For GET or invalid POST, render the form with errors if any
     return render_template("newTask.html", form=form)

@@ -1,6 +1,15 @@
 {% extends 'base.html' %} {% block title %}Your Tasks{% endblock %} {% block
 content %}
-<h2 class="text-center mb-4">Your Tasks</h2>
+<div class="row align-items-center mb-4">
+  <div class="col-md-6">
+    <h2 class="text-left">Your Tasks</h2>
+  </div>
+  <div class="col-md-6 text-right">
+    <a class="btn btn-outline-success" href="{{ url_for('task.new_task') }}"
+      >New Task</a
+    >
+  </div>
+</div>
 
 <!-- Display a message if there are no tasks -->
 {% if not tasks %}
@@ -45,10 +54,4 @@ content %}
   </div>
   {% endfor %}
 </div>
-{% endif %}
-
-<div class="text-center mt-3">
-  <a class="btn btn-primary" href="{{ url_for('task.new_task') }}">New Task</a>
-</div>
-
-{% endblock %}
+{% endif %} {% endblock %}
