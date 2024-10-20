@@ -23,6 +23,7 @@ def create_app():
     from .main_route import main as main_blueprint
     from .register_route import register_blueprint
     from .login_logout_route import login_logout_blueprint
+    from .tasks import tasks_blueprint
     from .new_task import task_blueprint
 
     # main is the home page
@@ -34,7 +35,10 @@ def create_app():
     # login/logout
     app.register_blueprint(login_logout_blueprint)
 
-    # new task page
+    # tasks page
+    app.register_blueprint(tasks_blueprint)
+
+    # new task  page
     app.register_blueprint(task_blueprint)
 
     # User loader: This tells Flask-Login how to load a user from an ID (from session)

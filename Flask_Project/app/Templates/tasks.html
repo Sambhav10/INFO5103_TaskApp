@@ -1,0 +1,22 @@
+{% extends 'base.html' %} {% block title %}Your Tasks{% endblock %} {% block
+content %}
+<h2>Your Tasks</h2>
+
+<!-- Display a message if there are no tasks -->
+{% if not tasks %}
+<p>You have no tasks.</p>
+{% else %}
+<ul>
+  {% for task in tasks %}
+  <li>
+    <strong>{{ task.title }}</strong><br />
+    Description: {{ task.description }}<br />
+    Due Date: {{ task.due_date.strftime('%Y-%m-%d %H:%M') if task.due_date else
+    'No due date' }}
+  </li>
+  {% endfor %}
+</ul>
+{% endif %}
+<a class="btn btn-primary" href="{{ url_for('task.new_task')}}">New Task</a>
+
+{% endblock %}
