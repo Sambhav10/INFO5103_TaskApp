@@ -1,22 +1,54 @@
 {% extends 'base.html' %} {% block title %}Your Tasks{% endblock %} {% block
 content %}
-<h2>Your Tasks</h2>
+<h2 class="text-center mb-4">Your Tasks</h2>
 
 <!-- Display a message if there are no tasks -->
 {% if not tasks %}
-<p>You have no tasks.</p>
+<div class="alert alert-info" role="alert">You have no tasks.</div>
 {% else %}
-<ul>
+<div class="accordion" id="taskAccordion">
   {% for task in tasks %}
-  <li>
-    <strong>{{ task.title }}</strong><br />
-    Description: {{ task.description }}<br />
-    Due Date: {{ task.due_date.strftime('%Y-%m-%d %H:%M') if task.due_date else
-    'No due date' }}
-  </li>
+  <div class="card mb-3 border-2">
+    <div class="card-header" id="heading{{ loop.index }}">
+      <h3 class="mb-0">
+        <button
+          class="btn btn-link"
+          type="button"
+          data-toggle="collapse"
+          data-target="#collapse{{ loop.index }}"
+          aria-expanded="true"
+          aria-controls="collapse{{ loop.index }}"
+          style="font-weight: bold; color: #343a40"
+        >
+          <!-- Bold and Darker Color -->
+          {{ task.title }}
+        </button>
+      </h3>
+    </div>
+
+    <div
+      id="collapse{{ loop.index }}"
+      class="collapse"
+      aria-labelledby="heading{{ loop.index }}"
+      data-parent="#taskAccordion"
+    >
+      <div class="card-body">
+        <p class="card-text h5">{{ task.description }}</p>
+        <p class="card-text h5">
+          <small class="text-muted"
+            >Due Date: {{ task.due_date.strftime('%Y-%m-%d %H:%M') if
+            task.due_date else 'No due date' }}</small
+          >
+        </p>
+      </div>
+    </div>
+  </div>
   {% endfor %}
-</ul>
+</div>
 {% endif %}
-<a class="btn btn-primary" href="{{ url_for('task.new_task')}}">New Task</a>
+
+<div class="text-center mt-3">
+  <a class="btn btn-primary" href="{{ url_for('task.new_task') }}">New Task</a>
+</div>
 
 {% endblock %}
